@@ -50,15 +50,9 @@ Future<User?> handleRegister ( {required String? email, required String? passwor
     try{
       final User? user = (await auth.createUserWithEmailAndPassword(email: email!, password: password!)).user;
 
-       user?.updateProfile();
+       user!.updateInfo();
 
-        await _db.collection('users').doc(email).set({
-          "uid": user!.uid,
-          "email": email,
-          "username": username,
-          "roles": {"admin": true, "editor": true},
-          "active": true
-        });
+    
 
       return user;
     } catch(e){
