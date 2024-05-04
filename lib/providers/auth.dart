@@ -67,7 +67,7 @@ Future<String?> handlelogin({
     } catch (e) {
       return e.toString();
     }
-  }
+}
 
 Future<void> logout() async{
   if(connectionStatusSingleton.hasConnection){
