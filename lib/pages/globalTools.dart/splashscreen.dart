@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/providers/auth.dart';
 import 'package:shimmer/shimmer.dart';
-
+ 
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -13,6 +13,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     if (mounted) {
       authService.auth.authStateChanges().listen((user) {
+        
         if (user != null) {
           if (user.emailVerified) {
             Navigator.pushReplacementNamed(context, '/home');

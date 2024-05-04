@@ -40,7 +40,7 @@ class DatabaseProvider{
   }
 
   void getCurrentEmployee() async{
-    
+
     _db.collection("employees").doc((await authService.auth.currentUser)?.email).snapshots().listen(( DocumentSnapshot documentSnapshot) {
         List  shops = documentSnapshot["shops"];
         employee.add(Employee(
@@ -137,14 +137,15 @@ class DatabaseProvider{
   Future<void> addStock(Stock stock)async{
     if(connectionStatusSingleton.hasConnection){
       try{
-       // DocumentReference addedStockToDatabase = await _db.collection("stock").add(stock.map) ;
-//error need to be fixed here
-     //   return await addedStockToDatabase.update(
-       //    "":addedStockToDatabase.id
-       // )
-      }
+        DocumentReference addedStockToDatabase = await _db.collection("stock").add(stock.map) ;
+       //error need to be fixed here
+        return await addedStockToDatabase.update({
+           "stockId": addedStockToDatabase.id,
+           }
+       );
+       }
       catch(e){
-        throw e;
+        rethrow;
       }
     }else{
       throw Exception("No Internet");
@@ -166,14 +167,14 @@ class DatabaseProvider{
       try{
         DocumentReference added = await _db.collection(operations).add(stock.map);
         await added.update({
-          (operations =="sales"? "salesId": "wasteId"): added.id,
+          (operations =="sales" ? "salesId": "wasteId"):added.id,
           "timestamp":DateTime.now().millisecondsSinceEpoch
         });
         if(originalStock.quantity! - stock.quantity! == 0.0){
           return await _db.collection("stock").doc(originalStock.stockId).delete();
         } else{
           return await _db.collection("stock").doc(originalStock.stockId).update({
-        //    "quantity": originalStock.dateadded!-stock.quantity!,
+            "quantity": originalStock.quantity!-stock.quantity!,
           });
         }
       } catch(e){

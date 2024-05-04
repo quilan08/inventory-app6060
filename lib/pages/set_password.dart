@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/providers/auth.dart';
 import 'package:shimmer/shimmer.dart';
 
-class SetPasswordPage extends StatelessWidget {
+/*class SetPasswordPage extends StatelessWidget {
   final String email;
 
   SetPasswordPage({Key? key, required this.email}) : super(key: key);
@@ -172,10 +172,11 @@ Icons.lock,
                               _loading = true;
                             });
                             authService
-                                .handleRegister(
+                                .registration(
                                     email: widget.email,
                                     password: _passwordController.text,
-                                    username: _nameController.text)
+                                    username: _nameController.text
+                                    )
                                 .then((user) {
                               user!.sendEmailVerification().then((_) {
                                 setState(() {
@@ -257,3 +258,4 @@ Icons.lock,
     );
   }
 }
+*/

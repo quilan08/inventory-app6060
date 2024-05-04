@@ -36,10 +36,10 @@ class _ShopsPageStateState  extends State<ShopPage> {
             case ConnectionState.waiting:
             return Container(
               width: (MediaQuery.of(context).size.width),
-              child: ListView(children: List<Widget>.filled(5, ListTile(leading:
+              child: ListView(children: List<Widget>.filled(10, ListTile(leading:
                Shimmer.fromColors(baseColor:
                 Colors.black12, highlightColor: Colors.black26,
-                 child:  Container(height: 20.0, width: 20.0, decoration: 
+                 child:  Container(height: 50.0, width: 50.0, decoration: 
                  const BoxDecoration(color: Colors.grey,
                  borderRadius: BorderRadius.all(Radius.circular(5.0))
                  )
@@ -48,7 +48,7 @@ class _ShopsPageStateState  extends State<ShopPage> {
                  title: Shimmer.fromColors(
                   baseColor: Colors.black12, highlightColor: Colors.black26,
                   child: Container(
-                    height: 20.0,
+                    height: 50.0,
                     decoration: const BoxDecoration(
                       color: Colors.grey,
                       borderRadius: BorderRadius.all(Radius.circular(5.0)),

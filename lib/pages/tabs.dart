@@ -2,10 +2,10 @@
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart' hide Badge;
 import 'package:flutter_application_1/pages/homescreen/productFiles/products.dart';
-import 'package:flutter_application_1/pages/profilepage.dart';
+import 'package:flutter_application_1/pages/waste.dart';
 import 'package:flutter_application_1/pages/sales.dart/sales.dart';
 import 'package:flutter_application_1/pages/shops/shops.dart';
-import 'package:flutter_application_1/pages/waste.dart';
+import 'package:flutter_application_1/pages/profile.dart';
 
 class TabsPage extends StatefulWidget {
   @override
@@ -18,8 +18,8 @@ class _TabsPageState extends State<TabsPage>
     const ShopPage(),
     const ProductsPage(),
     const SalesPage(),
-    ProfilePage(),
     WastePage(),
+    ProfilePage(),
   ];
    TabController? _tabController;
   int? _currentIndex;
@@ -55,7 +55,7 @@ class _TabsPageState extends State<TabsPage>
               _currentIndex = index;
             });
             _tabController!.animateTo(index!,
-                duration: Duration(milliseconds: 300), curve: Curves.ease);
+                duration: const Duration(milliseconds: 300), curve: Curves.ease);
           },
           elevation: 8,
           hasNotch: false, //new
@@ -71,7 +71,7 @@ class _TabsPageState extends State<TabsPage>
                   Icons.store,
                   color: Theme.of(context).primaryColor,
                 ),
-                title: Text("Shops")),
+                title: const Text("Shops")),
             BubbleBottomBarItem(
                 backgroundColor: Theme.of(context).primaryColor,
                 icon: const Icon(
@@ -85,7 +85,7 @@ class _TabsPageState extends State<TabsPage>
                 title: Text("Products")),
             BubbleBottomBarItem(
                 backgroundColor: Theme.of(context).primaryColor,
-                icon: Icon(
+                icon: const Icon(
                   Icons.attach_money,
                   color: Colors.black,
                 ),

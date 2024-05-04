@@ -252,7 +252,7 @@ void  _addStock(BuildContext context){
                     }else{
                       switch(snapshot.connectionState){
                         case ConnectionState.waiting:
-                          return Container(
+                          return SizedBox(
                             width: (MediaQuery.of(context).size.width),
                             child: Column(crossAxisAlignment: CrossAxisAlignment.center,
                             children:List<Widget>.filled(5, 
@@ -384,7 +384,7 @@ void  _addStock(BuildContext context){
                             setState(() {
                               _loading = false;
                             })
-                      , showToast("edit Successfully")
+                          ,showToast("edit Successfully")
                            } ).catchError((onError){
                             setState(() {
                               _loading = false;
@@ -410,7 +410,7 @@ void  _addStock(BuildContext context){
                            
                            });
                     }
-                  }, child:Text("Save") )
+                  }, child:const Text("Save") )
                 ],
               )
 

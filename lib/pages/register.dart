@@ -5,7 +5,7 @@ import 'package:flutter_application_1/pages/set_password.dart';
 import 'package:flutter_application_1/providers/auth.dart';
 import 'package:shimmer/shimmer.dart';
 
-class RegisterPage extends StatelessWidget {
+/*class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -186,3 +186,4 @@ class _RegisterFormState extends State<RegisterForm> {
     );
   }
 }
+*/

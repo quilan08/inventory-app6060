@@ -114,7 +114,8 @@ class _SalesPageState extends State<SalesPage> {
               ListView(scrollDirection: Axis.horizontal,
               children: <Widget>[
                 SingleChildScrollView(
-                  child: StreamBuilder<List<Sale>>(stream: dbService.sales.stream,builder: (BuildContext context, AsyncSnapshot<List<Sale>>snapshot){
+                  child: StreamBuilder<List<Sale>>(
+                    stream: dbService.sales.stream,builder: (BuildContext context, AsyncSnapshot<List<Sale>>snapshot){
                   
                     if(snapshot.hasError){
                       return Text("Error: ${snapshot.error}");
