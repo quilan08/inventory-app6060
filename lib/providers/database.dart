@@ -28,7 +28,7 @@ class DatabaseProvider{
       products.add(
         productSnapshots.docs.map((e) => Product(
         name: e["name"],
-        productId:e["productId"],
+        productid:e["productid"],
         buyingPrice: e["buyingPrice"], 
         sellingPrice: e["sellingPrice"],
         uom: e["uom"]
@@ -48,7 +48,7 @@ class DatabaseProvider{
           email: documentSnapshot["email"],
           shops: shops.map((shop) => Shop(
             shop: shop["shop"],
-            shopId: shop["shop"]
+            shopid: shop["shop"]
           )
           ).toList(),
            active: documentSnapshot["active"]));
@@ -59,7 +59,7 @@ class DatabaseProvider{
     _db.collection("sales")
     .where("shop", isEqualTo: {
       "shop":shop.shop,
-      "shopId": shop.shopId
+      "shopid": shop.shopid
       }).where("dateadded", isEqualTo: date).
       //change event to querySnapshots
       snapshots().listen((event) {
@@ -69,13 +69,13 @@ class DatabaseProvider{
             uom: e["product"]["uom"],
             buyingPrice: e["product"]["buyingPrice"],
             sellingPrice: e["product"]["sellingPrice"],
-            productId: e["product"]["productId"],
+            productid: e["product"]["productid"],
           ),
           shop: Shop(shop: e["shop"]["shop"],
-          shopId: e["shop"]["shopId"]
+          shopid: e["shop"]["shopid"]
           ),
-          stockId: e["stockId"],
-          salesId: e["salesId"],
+          stockid: e["stockid"],
+          salesid: e["salesid"],
           dateadded: e["dateadded"],
           timestamp: e["timestamp"],
           quantity: e["quantity"]
@@ -87,7 +87,7 @@ class DatabaseProvider{
 
   void getWaste(String date, Shop shop){
     wastes.add([]);
-    _db.collection("waste").where("shop", isEqualTo:{"shop":shop.shop,"shopId":shop.shopId})
+    _db.collection("waste").where("shop", isEqualTo:{"shop":shop.shop,"shopid":shop.shopid})
     .where("dateadded",isEqualTo: date.toString()).snapshots()
     .listen((QuerySnapshot salesSnapshot) {
       wastes.add(
@@ -97,12 +97,12 @@ class DatabaseProvider{
           uom: wastedocs["product"]["uom"],
           buyingPrice: wastedocs["product"]["buyingPrice"],
           sellingPrice: wastedocs["product"]["sellingPrice"],
-          productId: wastedocs["product"]["productId"],
+          productid: wastedocs["product"]["productid"],
           ),
           shop: Shop(shop: wastedocs["shop"]["shop"],
-          shopId: wastedocs["shop"]["shopId"]),
-          stockId: wastedocs["stockId"],
-          wasteId: wastedocs["wasteId"],
+          shopid: wastedocs["shop"]["shopid"]),
+          stockid: wastedocs["stockid"],
+          wasteid: wastedocs["wasteid"],
           dateadded: wastedocs["dateadded"],
           timestamp: wastedocs["timestamp"],
           quantity: wastedocs["quantity"]
@@ -110,10 +110,11 @@ class DatabaseProvider{
       );
     });
   }
+  
   void getStock(Shop shop){
     _db.collection("stock").where("shop", isEqualTo: {
       "shop":shop.shop,
-      "shopId":shop.shopId
+      "shopid":shop.shopid
     }).snapshots().listen((QuerySnapshot stockSnapShot) 
   {
     stock.add(
@@ -122,13 +123,13 @@ class DatabaseProvider{
       uom: stockdocs["product"]["uom"],
        buyingPrice: stockdocs["product"]["buyingPrice"],
        sellingPrice:stockdocs["product"]["sellingPrice"],
-       productId: stockdocs["product"]["productId"]
+       productid: stockdocs["product"]["productid"]
        ),
      dateadded: stockdocs["product"]["dateadded"], 
      shop: Shop(shop: stockdocs["shop"]["shop"], 
-     shopId: stockdocs["shop"]["shopId"]), 
+     shopid: stockdocs["shop"]["shopid"]), 
      quantity:stockdocs["quantity"],
-     stockId: stockdocs["stockId"] )
+     stockid: stockdocs["stockId"] )
      ).toList(),
     );
    });
@@ -140,7 +141,7 @@ class DatabaseProvider{
         DocumentReference addedStockToDatabase = await _db.collection("stock").add(stock.map) ;
        //error need to be fixed here
         return await addedStockToDatabase.update({
-           "stockId": addedStockToDatabase.id,
+           "stockid": addedStockToDatabase.id,
            }
        );
        }
@@ -154,7 +155,7 @@ class DatabaseProvider{
   Future<void> editStock(Stock stock)async{
     if(connectionStatusSingleton.hasConnection){
       try{
-        return await _db.collection("stock").doc(stock.stockId).update(stock.map);
+        return await _db.collection("stock").doc(stock.stockid).update(stock.map);
       } catch(e){
         rethrow;
       }
@@ -167,13 +168,13 @@ class DatabaseProvider{
       try{
         DocumentReference added = await _db.collection(operations).add(stock.map);
         await added.update({
-          (operations =="sales" ? "salesId": "wasteId"):added.id,
+          (operations =="sales" ? "salesid": "wasteid"):added.id,
           "timestamp":DateTime.now().millisecondsSinceEpoch
         });
         if(originalStock.quantity! - stock.quantity! == 0.0){
-          return await _db.collection("stock").doc(originalStock.stockId).delete();
+          return await _db.collection("stock").doc(originalStock.stockid).delete();
         } else{
-          return await _db.collection("stock").doc(originalStock.stockId).update({
+          return await _db.collection("stock").doc(originalStock.stockid).update({
             "quantity": originalStock.quantity!-stock.quantity!,
           });
         }
@@ -188,7 +189,7 @@ class DatabaseProvider{
   Future<List<Shop>?> getShops() async{
     try {
       QuerySnapshot res = await _db.collection("shops").get();
-      return res.docs.map((shop) => Shop(shop: shop["shop"], shopId: shop["shopId"])
+      return res.docs.map((shop) => Shop(shop: shop["shop"], shopid: shop["shopid"])
       ).toList();
     } catch (e) {
       rethrow;

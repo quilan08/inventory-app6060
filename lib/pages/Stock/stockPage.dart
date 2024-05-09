@@ -378,7 +378,7 @@ void  _addStock(BuildContext context){
                           dateadded: selectedDate, 
                           shop: stock.shop,
                            quantity: double.parse(quantityController!.text),
-                            stockId: stock.stockId
+                            stockid: stock.stockid
                            )
                            ).then((res) =>{
                             setState(() {

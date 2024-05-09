@@ -3,17 +3,17 @@ import 'shop.dart';
 
 class Waste{
   final Product? product;
-  final String? wasteId;
+  final String? wasteid;
   final String? dateadded;
-  final String? stockId;
+  final String? stockid;
   final int? timestamp;
   final Shop? shop;
   final double? quantity;
 
   const Waste({
     this.product,
-    this.wasteId,
-    this.stockId,
+    this.wasteid,
+    this.stockid,
     this.shop,
     this.dateadded,
     this.timestamp,
@@ -23,15 +23,15 @@ class Waste{
   Map<String,dynamic> get map{
     return{
        "product" : product,
-      "salesId":wasteId,
+      "salesId":wasteid,
       "dateadded" : dateadded,
       "timestamp" : timestamp,
       "shop":{
         "shop":shop!.shop,
-        "shopId" : shop!.shopId
+        "shopid" : shop!.shopid
       },
       "quantity":quantity,
-      "stockId":stockId
+      "stockId":stockid
     };
   }
 }

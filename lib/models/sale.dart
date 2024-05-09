@@ -3,36 +3,36 @@ import 'package:flutter_application_1/models/shop.dart';
 
 class Sale{
   final Product? product;
-  final String? salesId;
+  final String? salesid;
   final String? dateadded;
   final int? timestamp;
   final Shop? shop;
   final double? quantity;
-  final String? stockId;
+  final String? stockid;
 
 
   Sale({
     this.product,
-    this.salesId,
+    this.salesid,
     this.dateadded,
     this.timestamp,
     this.shop,
     this.quantity,
-    this.stockId,
+    this.stockid,
   });
 
   Map<String,dynamic> get map{
     return {
       "product" : product?.map,
-      "salesId":salesId,
+      "salesid":salesid,
       "dateadded" : dateadded,
       "timestamp" : timestamp,
       "shop":{
         "shop":shop!.shop,
-        "shopId" : shop!.shopId
+        "shopid" : shop!.shopid
       },
       "quantity":quantity,
-      "stockId":stockId
+      "stockid":stockid
     };
   }
 }

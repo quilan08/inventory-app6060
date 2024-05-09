@@ -1,9 +1,9 @@
 class Shop{
   String? shop;
-  String? shopId;
+  String? shopid;
 
   Shop({
     this.shop,
-    this.shopId,
+    this.shopid,
   });
 }

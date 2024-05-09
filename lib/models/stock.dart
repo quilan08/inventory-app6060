@@ -4,7 +4,7 @@ import 'package:flutter_application_1/models/shop.dart';
 class Stock{
   final Product? product;
   final double? quantity;
-  final String? stockId;
+  final String? stockid;
   final String? dateadded;
   final Shop? shop;
 
@@ -13,7 +13,7 @@ class Stock{
     required this.dateadded,
     required this.shop,
     required this.quantity,
-    this.stockId
+    this.stockid
   });
 
   Map<String,dynamic> get map{
@@ -23,10 +23,10 @@ class Stock{
       "dateadded" :dateadded.toString(),
       "shop":{
         "shop":shop!.shop,
-        "shopId" : shop!.shopId
+        "shopid" : shop!.shopid
       },
      
-      "stockId":stockId
+      "stockId":stockid
     };
     
   }

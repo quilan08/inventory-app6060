@@ -2,7 +2,7 @@
 
 class Product{
   final String name;
-  final String? productId;
+  final String? productid;
   final String? uom;
   final double buyingPrice;
   final double sellingPrice;
@@ -11,14 +11,14 @@ class Product{
     required this.name,
     required this.buyingPrice,
     required this.sellingPrice,
-    this.productId,
+    this.productid,
     this.uom 
   });
 
   Map<String, dynamic> get map{
     return {
       "name": name,
-        "productid": productId,
+        "productid": productid,
         "uom": uom,
         "buyingPrice" :buyingPrice,
         "sellingPrice":sellingPrice,
