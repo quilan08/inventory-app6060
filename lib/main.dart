@@ -1,10 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/LoginPage/loginwidget.dart';
-import 'package:flutter_application_1/pages/globalTools.dart/splashscreen.dart';
-import 'package:flutter_application_1/pages/register.dart';
-import 'package:flutter_application_1/pages/tabs.dart';
-import 'package:flutter_application_1/pages/verify.dart';
 import 'package:flutter_application_1/providers/auth.dart';
 import 'package:flutter_application_1/providers/database.dart';
 

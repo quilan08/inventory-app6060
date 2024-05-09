@@ -25,7 +25,7 @@ class _CreateAccountState extends State<CreateAccount>
   final _form = GlobalKey<FormState>();
   bool isChecked = false;
   bool _isloading = false;
-  late AnimationController controller;
+  
   bool isValidEmail(String val) {
     return RegExp(
             r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
@@ -39,7 +39,7 @@ class _CreateAccountState extends State<CreateAccount>
 
   @override
   void dispose() {
-    controller.dispose();
+    
     super.dispose();
   }
 
@@ -49,7 +49,7 @@ class _CreateAccountState extends State<CreateAccount>
 
     return Stack(children: [
       CircularProgressIndicator(
-        value: controller.value,
+       
         semanticsLabel: 'Circular progress indicator',
       ),
       Container(
